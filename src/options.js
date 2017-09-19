@@ -1,14 +1,16 @@
 import { h, Component, options } from 'preact';
 
 
-// a sensible default for animations (only really used with syncComponentUpdates=false)
-options.debounceRendering = requestAnimationFrame;
+if (typeof window!=='undefined') {
+	// a sensible default for animations (only really used with syncComponentUpdates=false)
+	options.debounceRendering = requestAnimationFrame;
 
-// provides some default options:
-window.requestIdleCallbackDemo = fn => {
-	if (!window.requestIdleCallback) setTimeout(fn);
-	else requestIdleCallback(fn, { timeout: 100 });
-};
+	// provides some default options:
+	window.requestIdleCallbackDemo = fn => {
+		if (!window.requestIdleCallback) setTimeout(fn);
+		else requestIdleCallback(fn, { timeout: 100 });
+	};
+}
 
 
 export default class Options extends Component {
