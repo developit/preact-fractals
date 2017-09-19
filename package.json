@@ -1,22 +1,25 @@
 {
-  "name": "react-fractals",
+  "name": "preact-fractals",
   "version": "0.0.1",
-  "private": true,
   "devDependencies": {
-    "react-scripts": "0.7.0"
+    "eslint": "^4.6.1",
+    "eslint-config-synacor": "^1.1.1",
+    "if-env": "^1.0.0",
+    "preact-cli": "1.4.1"
   },
   "dependencies": {
     "d3-scale": "^1.0.4",
     "d3-selection": "^1.0.3",
-    "preact": "^7.1.0",
-    "preact-compat": "^3.9.4",
-    "react": "github:preact-compat/react",
-    "react-dom": "github:preact-compat/react-dom"
+    "preact": "^8.2.5"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-synacor"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "eslint src && preact test",
+    "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
+    "build": "preact build",
+    "serve": "preact build && preact serve",
+    "dev": "preact watch"
   }
 }
